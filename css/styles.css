@@ -13,7 +13,7 @@ body {
 
 /* Box Chat */
 .chat {
-    width: 80vw;
+    width: 100vw;
     height: 100vh;
     background-color: white;
     display: flex;
@@ -22,9 +22,8 @@ body {
 /* box message */
 .messages {
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
     border-bottom: 1px solid #C1C1C1;
-    
 }
 /* Conversation Mobile Header */
 .conv_name {
@@ -68,58 +67,58 @@ input[type=submit] {
     color: white;
     padding-right: 15px;
     transition: all .2s;
+    display: none;
 }
 input[type=submit]:hover {
     cursor: pointer;
     transform: scale(.95);
 }
 /* General Box Message */
-.message {
-    padding: 15px;
-    width: 100vw;
-    min-height: 5vh;
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-   
-}
+
 /* User Message style */
-.message--me {
-    display: flex;
-    justify-content: flex-end;
-    color: #6B130F;
-}
+
 .message--me .message__content {
     background-color: #F07B76;
-}
-/* Friend Message style */
-.message__author {
-    margin-left: 15px;
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: rgb(83, 83, 83);
+    color: blue;
+    width: 20vw;
+    padding: 10px;
 }
 
-.message--friend {
-    display: flex;
-    justify-content: flex-start;
-    color: black;
-}
-.message__content {
+.messages .message--me {
     display: flex;
     justify-content: flex-end;
+    margin-right: 1vh;
+}
+/* Friend Message style */
+
+.message__author {
+    font-size: 14px;
+    color: rgb(83, 83, 83);
+    margin-left: 10px;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    font-weight: bold;
+}
+
+
+.message__content {
+    background-color: grey;
+    width: 20vw;
     padding: 10px;
+    margin-bottom: 8px;
+    margin-left: 1vw;
     border-radius: 20px;
     background-color: #F1F1F1;
     color: black;
+
 }
 /* Svg style */
 #Capa_1 {
     width: 30px;
     height: 30px;
     position: fixed;
-    right: 30px;
-    bottom: 6px;
+    right: 20px;
+    bottom: 2.5vh;
 }
 #Capa_2 {
     width: 20px;
@@ -142,18 +141,20 @@ li {
     display: flex;
     justify-content: flex-start;
     border: solid 0.5px grey;
-    margin-top: 1px;
+    margin-bottom: 1px;
     background-color: #F07B76;
     color: white;
     font-weight: bold;
     
 }
 
+
+
 @media(min-width: 850px){
     .conversation {
         display: block;
     }
-
+    
     .conv_name {
         display: none;
     }
@@ -165,12 +166,24 @@ li {
     }
 
     form {
-        width: 80vw;
+        width: 100vw;
+    }
+    .messages {
+        height: 90vh;
     }
 
-    .message {
-        width: 80vw;
+    .chat {
+        width: 90vw;
     }
+
+    #Capa_1 {
+        display: none;
+    }
+
+    input[type=submit] {
+        display: block;
+    }
+    
 }
 
 

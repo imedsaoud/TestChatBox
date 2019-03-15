@@ -1,13 +1,14 @@
 <?php
-session_start(); // Launch the session on this page
+require_once  "../connexion.php";
 
-// Redirects to the index page if the user isn't connected
-if(!isset($_SESSION['user_name'])) {
-    header('Location: ../index.php');
-}
+
+// // Redirects to the index page if the user isn't connected
+// if(!isset($_SESSION['user_name'])) {
+//     header('Location: ../index.php');
+// }
 
 // Store the message and the username to save them in the DB
-$message = $_POST['message'];
+
 $user = $_SESSION['user_name'];
 
 // Process to 'clean' the variables in order to avoid scripts etc.
@@ -15,17 +16,15 @@ $message = htmlspecialchars($message);
 $user = htmlspecialchars($user);
 
 
-// Connexion to the database:
-try
-{
-    $pdo = new PDO("mysql:dbname=mychat;port=3306;host=127.0.0.1","root", "root");
-}
-catch (Error $e)
-{
-    echo 'Error: ' . $e->getMessage();  // if an error occurs, displays the error and stop the script
-    exit();
-} 
-$answer = $pdo->exec('INSERT INTO message(message_content,message_author) VALUES (\''.$message.'\', \''.$user.'\')');
+
+$query ='INSERT INTO 
+        message(message_content,message_author) 
+        VALUES (:content , :user_name)' ;
+$stmt = $pdo->prepare($query);
+$stmt->bindValue(":content" , $_POST['message']);
+$stmt->bindValue(":user_name" , $_SESSION['user_name']);
+$stmt->execute();
+
 
 // Close connection
 $pdo = null;
